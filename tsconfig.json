@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",               // ✅ soporte para async/await
+    "lib": ["DOM", "ESNext"],         // ✅ DOM y Promesas modernas
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}

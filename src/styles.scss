@@ -1,0 +1,72 @@
+// 🎨 Variables de diseño
+$primary-color: #00b894;
+$hover-color: darken($primary-color, 10%);
+$bg-color: #ecf0f1;
+$text-color: #2d3436;
+$card-bg: #ffffff;
+$shadow-color: rgba(0, 0, 0, 0.1);
+
+// 🔧 Reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: $bg-color;
+  color: $text-color;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+// 🟩 Título
+h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: $primary-color;
+}
+
+// 🟩 Botón
+button {
+  background-color: $primary-color;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.8rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px $shadow-color;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $hover-color;
+  }
+}
+
+// 🟨 Contenedor de la broma
+#joke-container {
+  margin-top: 2rem;
+  background-color: $card-bg;
+  padding: 2rem;
+  border-radius: 15px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 24px $shadow-color;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.01);
+  }
+
+  p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+  }
+}
