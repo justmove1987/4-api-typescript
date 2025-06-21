@@ -7,13 +7,14 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: url("assets/background.jpg") no-repeat center center fixed;
+  background-size: cover;
   color: #2d3436;
   height: 100vh;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -35,16 +36,23 @@ button {
   transition: background-color 0.3s ease;
 }
 button:hover {
-  background-color: #2c5f9a;
+  background-color: #113966;
+}
+
+#weather-container {
+  margin-bottom: 2rem;
+  font-size: 2.1rem;
+  font-weight: bold;
+  color: #3778c2;
 }
 
 #joke-container {
-  padding: 2rem;
-  border-radius: 15px;
   max-width: 600px;
   width: 100%;
+  padding: 2rem;
   margin-bottom: 1.5rem;
   transition: transform 0.2s ease;
+  border-radius: 15px;
 }
 #joke-container p {
   font-size: 1.25rem;
@@ -52,12 +60,31 @@ button:hover {
 }
 
 .block-container {
+  background-color: #ffffff;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
-  background-color: #ffffff;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3rem;
+}
+
+#score-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+#score-buttons button {
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+#score-buttons button.selected {
+  border-color: #2ecc71;
 }/*# sourceMappingURL=styles.css.map */

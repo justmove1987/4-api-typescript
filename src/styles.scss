@@ -1,39 +1,41 @@
-// 🎨 Variables de diseño
+// 🎨 Variables de disseny
 $primary-color: #3778c2;
-$hover-color: darken($primary-color, 10%);
+$hover-color: #113966;
 $bg-color: #ecf0f1;
 $text-color: #2d3436;
 $card-bg: #ffffff;
 $shadow-color: rgba(0, 0, 0, 0.1);
 
-// 🔧 Reset
+// 🔧 Reset global
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+// 🌐 Cos general
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: url('assets/background.jpg') no-repeat center center fixed;
+  background-size: cover;
   color: $text-color;
   height: 100vh;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 2rem;
   text-align: center;
 }
 
-// 🟩 Título
+// 🟦 Títol principal
 h1 {
   font-size: 2rem;
   margin-bottom: 1.5rem;
   color: $primary-color;
 }
 
-// 🟩 Botón
+// 🔘 Botó principal
 button {
   background-color: $primary-color;
   color: #fff;
@@ -50,14 +52,22 @@ button {
   }
 }
 
-// 🟨 Contenedor de la broma
+// 🌦️ Contenidor del temps
+#weather-container {
+  margin-bottom: 2rem;
+  font-size: 2.1rem;
+  font-weight: bold;
+  color: $primary-color;
+}
+
+// 🟨 Contenidor de l'acudit
 #joke-container {
-  padding: 2rem;
-  border-radius: 15px;
   max-width: 600px;
   width: 100%;
+  padding: 2rem;
   margin-bottom: 1.5rem;
   transition: transform 0.2s ease;
+  border-radius: 15px;
 
   p {
     font-size: 1.25rem;
@@ -65,13 +75,36 @@ button {
   }
 }
 
+// 📦 Contenidor visual amb fons i ombra
 .block-container {
+  background-color: $card-bg;
   box-shadow: 0 8px 24px $shadow-color;
   border-radius: 15px;
-  background-color: $card-bg;
+  padding: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3rem;
+}
+
+// ⭐ Botons de puntuació
+#score-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+
+  button {
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    background: #fff;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+
+    &.selected {
+      border-color: #2ecc71;
+    }
+  }
 }
