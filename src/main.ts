@@ -12,7 +12,13 @@ const reportJokes: JokeEntry[] = [];
 
 let lastUsedSource = 0; // 0 = icanhaz, 1 = chuck
 
-// Funció principal per obtenir acudits alternats
+const blobClasses = ['shape-1', 'shape-2', 'shape-3', 'shape-4', 'shape-5', 'shape-6', 'shape-7'];
+
+function getRandomBlobClass(): string {
+  const index = Math.floor(Math.random() * blobClasses.length);
+  return blobClasses[index];
+}
+
 async function fetchRandomJoke(): Promise<void> {
   if (currentJoke && selectedScore !== null) {
     reportJokes.push({
@@ -37,7 +43,6 @@ async function fetchRandomJoke(): Promise<void> {
   }
 }
 
-// API 1 — icanhazdadjoke
 async function fetchIcanhaz(): Promise<string> {
   const res = await fetch('https://icanhazdadjoke.com/', {
     headers: { Accept: 'application/json' }
@@ -46,19 +51,23 @@ async function fetchIcanhaz(): Promise<string> {
   return data.joke;
 }
 
-// API 2 — Chuck Norris
 async function fetchChuckNorris(): Promise<string> {
   const res = await fetch('https://api.chucknorris.io/jokes/random');
   const data = await res.json();
   return data.value;
 }
 
-// Mostra la broma i prepara els botons de puntuació
 function renderJoke(joke: string): void {
-  const container = document.getElementById('joke-container');
-  if (!container) return;
+  const block = document.querySelector('.block-container') as HTMLElement;
+  const jokeContainer = document.getElementById('joke-container');
+  if (!block || !jokeContainer) return;
 
-  container.innerHTML = `
+  // Assignar forma blob al contenidor sencer
+  block.className = 'block-container joke-shape';
+  block.classList.add(getRandomBlobClass());
+
+  // Mostrar acudit i botons
+  jokeContainer.innerHTML = `
     <p>${joke}</p>
     <div id="score-buttons">
       <button data-score="1">😐</button>
@@ -67,7 +76,7 @@ function renderJoke(joke: string): void {
     </div>
   `;
 
-  const buttons = container.querySelectorAll<HTMLButtonElement>('button[data-score]');
+  const buttons = jokeContainer.querySelectorAll<HTMLButtonElement>('button[data-score]');
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
       buttons.forEach(b => b.classList.remove('selected'));
@@ -77,7 +86,6 @@ function renderJoke(joke: string): void {
   });
 }
 
-// Traducció de codi meteorològic a icona
 function getWeatherIcon(code: number): string {
   if (code === 0) return '☀️';
   if ([1, 2, 3].includes(code)) return '🌤️';
@@ -90,7 +98,6 @@ function getWeatherIcon(code: number): string {
   return '❓';
 }
 
-// Mostra la icona i temperatura actual
 async function fetchWeather(): Promise<void> {
   const lat = 41.39, lon = 2.15;
   try {
@@ -108,7 +115,6 @@ async function fetchWeather(): Promise<void> {
   }
 }
 
-// Inicialització
 document.getElementById('joke-btn')?.addEventListener('click', fetchRandomJoke);
 fetchWeather();
 fetchRandomJoke();
