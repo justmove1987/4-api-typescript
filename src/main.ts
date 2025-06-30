@@ -6,6 +6,10 @@ interface JokeEntry {
   date: string;
 }
 
+const ICANHAZ_URL = import.meta.env.VITE_ICANHAZ_URL;
+const CHUCKNORRIS_URL = import.meta.env.VITE_CHUCKNORRIS_URL;
+const WEATHER_URL = import.meta.env.VITE_WEATHER_URL;
+
 let currentJoke = '';
 let selectedScore: number | null = null;
 const reportJokes: JokeEntry[] = [];
@@ -44,7 +48,7 @@ async function fetchRandomJoke(): Promise<void> {
 }
 
 async function fetchIcanhaz(): Promise<string> {
-  const res = await fetch('https://icanhazdadjoke.com/', {
+  const res = await fetch(ICANHAZ_URL, {
     headers: { Accept: 'application/json' }
   });
   const data = await res.json();
@@ -52,7 +56,7 @@ async function fetchIcanhaz(): Promise<string> {
 }
 
 async function fetchChuckNorris(): Promise<string> {
-  const res = await fetch('https://api.chucknorris.io/jokes/random');
+  const res = await fetch(CHUCKNORRIS_URL);
   const data = await res.json();
   return data.value;
 }
@@ -62,11 +66,9 @@ function renderJoke(joke: string): void {
   const jokeContainer = document.getElementById('joke-container');
   if (!block || !jokeContainer) return;
 
-  // Assignar forma blob al contenidor sencer
   block.className = 'block-container joke-shape';
   block.classList.add(getRandomBlobClass());
 
-  // Mostrar acudit i botons
   jokeContainer.innerHTML = `
     <p>${joke}</p>
     <div id="score-buttons">
@@ -101,7 +103,7 @@ function getWeatherIcon(code: number): string {
 async function fetchWeather(): Promise<void> {
   const lat = 41.39, lon = 2.15;
   try {
-    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+    const res = await fetch(`${WEATHER_URL}?latitude=${lat}&longitude=${lon}&current_weather=true`);
     const data = await res.json();
     const weather = data.current_weather;
 

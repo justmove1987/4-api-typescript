@@ -39,3 +39,10 @@ git clone https://github.com/justmove1987/4-api-typescript.git
 cd 4-api-typescript
 npm install
 npm run dev
+```
+
+## 🛠️ Screenshoots
+
+![alt text](assets/image.png)
+
+![alt text](assets/image-1.png)
